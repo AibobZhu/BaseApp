@@ -69,10 +69,35 @@ Installation
             # CACHE
             CACHE_TYPE = 'simple'
 
+7. Install mongodb
+
+        docker pull mongo
+        docker run -itd --name mongo -p 27017:27017 mongo
+        
+        #Create user
+        >mongo 
+        >db.createUser({
+         user:'test',
+         pwd:'test',
+         roles:[
+            {
+               role:'readWrite',
+               db:'test'
+            }
+         ],
+         mechanisms:[
+            'SCRAM-SHA-1'
+         ]
+         })
+
+8. Install redis
+      
+      docker run --name my-first-redis -p 6379:6379 redis
 
 7. Run a development server:
-        
-        python manage.py runserver
+      
+      python manage.py runserver
+
 
 Usage
 -----
